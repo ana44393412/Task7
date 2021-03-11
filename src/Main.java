@@ -12,7 +12,7 @@ public class Main {
         try {
             country = Country.valueOf(input.toUpperCase());
             country.getInfo();
-        } catch (IllegalArgumentException | NullPointerException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Наименование страны на английском введено некорректно, проверяем русское название...");
             try {
                 country = Country.getByRuName(input);
@@ -20,6 +20,8 @@ public class Main {
             } catch (NoSuchCountryException noSuchCountryException) {
                 System.out.println(noSuchCountryException.toString());
             }
+        } catch (NullPointerException e) {
+            System.out.println("Введено пустое значение, поиск невозможен");
         }
     }
 }
